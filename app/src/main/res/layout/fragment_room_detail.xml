@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    layout/fragment_room_detail.xml
+    Экран детализации комнаты: размеры, проёмы, список материалов, список работ.
+    Шаг 6.6.1:
+      - Корень: CoordinatorLayout
+      - NestedScrollView с paddingBottom для Sticky Bottom Bar
+      - LinearLayout (vertical) с двумя include-блоками и двумя RecyclerView
+      - Sticky Bottom Bar (LinearLayout) закреплён внизу CoordinatorLayout
+      - FAB для добавления материала (btnAddMaterial)
+      - FAB для добавления рабочей задачи (btnAddWorkTask)
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ──────────────────────────────────────────────────────────────────── -->
+    <!-- Прокручиваемая область с контентом                                   -->
+    <!-- paddingBottom = sticky_bar_padding_bottom, чтобы контент не прятался-->
+    <!-- за Sticky Bottom Bar при прокрутке до конца.                         -->
+    <!-- ──────────────────────────────────────────────────────────────────── -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/sticky_bar_padding_bottom"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Блок ввода размеров (Длина, Ширина, Высота) -->
+            <include
+                android:id="@+id/blockRoomDimensions"
+                layout="@layout/block_room_dimensions" />
+
+            <!-- Разделитель -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/colorControlHighlight"
+                android:layout_marginStart="@dimen/list_item_padding"
+                android:layout_marginEnd="@dimen/list_item_padding" />
+
+            <!-- Блок проёмов (окна, двери) -->
+            <include
+                android:id="@+id/blockOpenings"
+                layout="@layout/block_openings" />
+
+            <!-- Разделитель -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/colorControlHighlight"
+                android:layout_marginStart="@dimen/list_item_padding"
+                android:layout_marginEnd="@dimen/list_item_padding" />
+
+            <!-- Заголовок секции «Материалы» + кнопка добавления -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/list_item_padding"
+                android:paddingEnd="@dimen/list_item_padding"
+                android:paddingTop="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_materials"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddMaterial"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_add_material"
+                    app:icon="@android:drawable/ic_input_add" />
+
+            </LinearLayout>
+
+            <!-- RecyclerView — список позиций сметы (материалы) -->
+            <!-- nestedScrollingEnabled="false" — прокрутка управляется NestedScrollView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEstimateItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_estimate"
+                tools:itemCount="5" />
+
+            <!-- Пустое состояние сметы (6.12) -->
+            <TextView
+                android:id="@+id/tvEmptyEstimate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_estimate"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?attr/colorOnSurface"
+                android:alpha="0.5"
+                android:gravity="center"
+                android:padding="@dimen/list_item_padding"
+                android:visibility="gone" />
+
+            <!-- Разделитель -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/colorControlHighlight"
+                android:layout_marginStart="@dimen/list_item_padding"
+                android:layout_marginEnd="@dimen/list_item_padding"
+                android:layout_marginTop="@dimen/spacing_medium" />
+
+            <!-- Заголовок секции «Работы» + кнопка добавления задачи -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/list_item_padding"
+                android:paddingEnd="@dimen/list_item_padding"
+                android:paddingTop="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_salaries"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddWorkTask"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_add_task"
+                    app:icon="@android:drawable/ic_input_add" />
+
+            </LinearLayout>
+
+            <!-- RecyclerView — список рабочих задач (зарплаты) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWorkTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="@dimen/spacing_medium" />
+
+            <!-- Пустое состояние задач (6.12) -->
+            <TextView
+                android:id="@+id/tvEmptyWorkTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_work_tasks"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?attr/colorOnSurface"
+                android:alpha="0.5"
+                android:gravity="center"
+                android:padding="@dimen/list_item_padding"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ──────────────────────────────────────────────────────────────────── -->
+    <!-- Sticky Bottom Bar                                                     -->
+    <!-- Закреплена внизу CoordinatorLayout, поверх контента.                 -->
+    <!-- elevation=8dp обеспечивает «парящий» эффект над списком.             -->
+    <!-- Шаг 6.6.1: три TextView с layout_weight="1" + разделители.           -->
+    <!-- ──────────────────────────────────────────────────────────────────── -->
+    <LinearLayout
+        android:id="@+id/stickyBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sticky_bar_height"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/sticky_bar_padding_horizontal"
+        android:paddingEnd="@dimen/sticky_bar_padding_horizontal"
+        android:elevation="8dp"
+        android:background="?attr/colorSurface">
+
+        <!-- Иконка сметы слева -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_agenda"
+            android:contentDescription="@string/label_total"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:alpha="0.7" />
+
+        <!-- Итог: МАТЕРИАЛЫ -->
+        <TextView
+            android:id="@+id/tvMaterialsTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textAllCaps="true"
+            tools:text="МАТЕРИАЛЫ\n12 500 ₽" />
+
+        <!-- Разделитель между МАТЕРИАЛЫ и ЗАРПЛАТЫ -->
+        <View
+            android:layout_width="@dimen/sticky_bar_divider_width"
+            android:layout_height="@dimen/sticky_bar_divider_height"
+            android:background="?attr/colorControlHighlight" />
+
+        <!-- Итог: ЗАРПЛАТЫ -->
+        <TextView
+            android:id="@+id/tvSalariesTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textAllCaps="true"
+            tools:text="ЗАРПЛАТЫ\n8 000 ₽" />
+
+        <!-- Разделитель между ЗАРПЛАТЫ и ИТОГО -->
+        <View
+            android:layout_width="@dimen/sticky_bar_divider_width"
+            android:layout_height="@dimen/sticky_bar_divider_height"
+            android:background="?attr/colorControlHighlight" />
+
+        <!-- Итог: ИТОГО (выделен жирным и цветом акцента) -->
+        <TextView
+            android:id="@+id/tvRoomTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
+            android:textAllCaps="true"
+            tools:text="ИТОГО\n20 500 ₽" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

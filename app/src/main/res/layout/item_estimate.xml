@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    layout/item_estimate.xml
+    Одна позиция сметы в RecyclerView на экране детализации комнаты.
+    Шаг 6.5.1: Все размеры — через @dimen/, строки — через @string/.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/list_item_padding"
+    android:paddingEnd="@dimen/list_item_padding"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:background="?attr/selectableItemBackground">
+
+    <!--
+        statusDot — круглый индикатор логистического статуса (8dp).
+        Фон задаётся программно через statusDot.setBackgroundTintList().
+        Шаг 6.5.1: View с id statusDot (8dp).
+    -->
+    <View
+        android:id="@+id/statusDot"
+        android:layout_width="@dimen/status_dot_size"
+        android:layout_height="@dimen/status_dot_size"
+        android:background="@drawable/shape_circle"
+        android:contentDescription="@string/cd_item_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Название материала / вида работ -->
+    <TextView
+        android:id="@+id/tvItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:contentDescription="@string/col_name"
+        app:layout_constraintStart_toEndOf="@id/statusDot"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvItemUnit"
+        android:layout_marginStart="@dimen/spacing_medium"
+        tools:text="Краска акриловая белая, матовая" />
+
+    <!-- Единица измерения -->
+    <TextView
+        android:id="@+id/tvItemUnit"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        android:gravity="center"
+        android:contentDescription="@string/col_unit"
+        app:layout_constraintEnd_toStartOf="@id/tvItemQuantity"
+        app:layout_constraintTop_toTopOf="@id/tvItemName"
+        android:layout_marginEnd="@dimen/spacing_small"
+        tools:text="кв.м" />
+
+    <!-- Количество -->
+    <TextView
+        android:id="@+id/tvItemQuantity"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:gravity="end"
+        android:contentDescription="@string/col_quantity"
+        app:layout_constraintEnd_toStartOf="@id/tvItemPrice"
+        app:layout_constraintTop_toTopOf="@id/tvItemName"
+        android:layout_marginEnd="@dimen/spacing_small"
+        tools:text="12.50" />
+
+    <!-- Цена за единицу -->
+    <TextView
+        android:id="@+id/tvItemPrice"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:gravity="end"
+        android:contentDescription="@string/col_price"
+        app:layout_constraintEnd_toStartOf="@id/tvItemTotal"
+        app:layout_constraintTop_toTopOf="@id/tvItemName"
+        android:layout_marginEnd="@dimen/spacing_small"
+        tools:text="350,00 ₽" />
+
+    <!-- Итоговая сумма позиции -->
+    <TextView
+        android:id="@+id/tvItemTotal"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:textStyle="bold"
+        android:gravity="end"
+        android:contentDescription="@string/col_total"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvItemName"
+        tools:text="4 375 ₽" />
+
+    <!-- Подпись единицы и количества — вторая строка под tvItemName -->
+    <TextView
+        android:id="@+id/tvItemNameSub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:layout_constraintStart_toStartOf="@id/tvItemName"
+        app:layout_constraintTop_toBottomOf="@id/tvItemName"
+        app:layout_constraintEnd_toEndOf="@id/tvItemName"
+        tools:text="ФГИС ЦС: 01.02.001" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

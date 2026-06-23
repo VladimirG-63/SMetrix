@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Карточка одной комнаты в списке комнат проекта.
+    Корень — MaterialCardView для красивого внешнего вида.
+    tvRoomName — название комнаты.
+    tvRoomArea — расчётная площадь (опционально).
+    ivEditRoom  — иконка редактирования (карандаш).
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/list_item_padding"
+    android:layout_marginEnd="@dimen/list_item_padding"
+    android:layout_marginTop="@dimen/spacing_small"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/project_card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/list_item_padding">
+
+        <!-- Иконка редактирования комнаты (крайний правый элемент) -->
+        <ImageView
+            android:id="@+id/ivEditRoom"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_edit"
+            android:contentDescription="@string/cd_edit_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription"
+            xmlns:tools="http://schemas.android.com/tools" />
+
+        <!-- Площадь / размеры комнаты -->
+        <TextView
+            android:id="@+id/tvRoomArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginEnd="@dimen/spacing_small"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvRoomName"
+            app:layout_constraintEnd_toStartOf="@id/ivEditRoom"
+            tools:text="24.0 м²"
+            xmlns:tools="http://schemas.android.com/tools" />
+
+        <!-- Название комнаты -->
+        <TextView
+            android:id="@+id/tvRoomName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tvRoomArea"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Спальня"
+            xmlns:tools="http://schemas.android.com/tools" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

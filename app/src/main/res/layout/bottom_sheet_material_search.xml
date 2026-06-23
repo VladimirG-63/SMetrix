@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    BottomSheet для поиска материалов в ФГИС ЦС.
+    Содержит:
+      - etSearch  — строка живого поиска
+      - rvMaterialResults — список результатов
+      - tvEmptySearch — заглушка пустого состояния
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/list_item_padding">
+
+    <!-- Дескриптор для drag-handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="?attr/colorControlHighlight" />
+
+    <!-- Строка поиска -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_item_padding"
+        android:layout_marginEnd="@dimen/list_item_padding"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:hint="@string/hint_search_material"
+        app:startIconDrawable="@android:drawable/ic_menu_search"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:imeOptions="actionSearch" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnManualMaterial"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_item_padding"
+        android:layout_marginEnd="@dimen/list_item_padding"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:text="@string/material_manual_add" />
+
+    <!-- Заглушка пустого / начального состояния -->
+    <TextView
+        android:id="@+id/tvEmptySearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_search_hint"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.5"
+        android:gravity="center"
+        android:padding="@dimen/list_item_padding"
+        android:visibility="visible" />
+
+    <!-- Список результатов поиска -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMaterialResults"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/list_item_padding" />
+
+</LinearLayout>

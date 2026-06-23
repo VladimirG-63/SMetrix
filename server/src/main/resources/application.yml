@@ -1,0 +1,82 @@
+server:
+  port: 8080
+  address: 0.0.0.0
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/smetrix_db}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+jwt:
+  secret: ${JWT_SECRET:local-development-secret-change-before-production-32b}
+  expiration-ms: 900000
+  refresh-expiration-ms: 2592000000
+
+fgis:
+  enabled: ${FGIS_ENABLED:false}
+  import-key: ${FGIS_IMPORT_KEY:}
+  api:
+    download-url-template: ${FGIS_DOWNLOAD_URL_TEMPLATE:}
+    session-url-template: ${FGIS_SESSION_URL_TEMPLATE:}
+    period: ${FGIS_PERIOD:}
+    region-codes: ${FGIS_REGION_CODES:}
+    connect-timeout-seconds: 20
+    read-timeout-seconds: 120
+    max-download-bytes: 104857600
+    max-attempts: ${FGIS_MAX_ATTEMPTS:3}
+    retry-delay-ms: ${FGIS_RETRY_DELAY_MS:2000}
+  scheduler:
+    # First day of every quarter at 03:00. On-demand stale-region refresh remains separate.
+    cron: ${FGIS_CRON:0 0 3 1 1,4,7,10 *}
+    region-refresh-delay-ms: ${FGIS_REGION_REFRESH_DELAY_MS:300000}
+    freshness-hours: ${FGIS_FRESHNESS_HOURS:24}
+
+alerts:
+  admin-email: ${ADMIN_ALERT_EMAIL:}
+
+security:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+
+server:
+  forward-headers-strategy: framework

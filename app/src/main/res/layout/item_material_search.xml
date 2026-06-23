@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Элемент списка результатов поиска материалов.
+    tvMaterialName   — название материала
+    tvMaterialCode   — код ФГИС ЦС
+    tvMaterialPrice  — цена за единицу
+    tvMaterialUnit   — единица измерения
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/list_item_padding"
+    android:paddingEnd="@dimen/list_item_padding"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Название материала -->
+    <TextView
+        android:id="@+id/tvMaterialName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="2"
+        app:layout_constraintEnd_toStartOf="@id/tvMaterialPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Краска акриловая белая, матовая" />
+
+    <!-- Код ФГИС ЦС -->
+    <TextView
+        android:id="@+id/tvMaterialCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:layout_constraintEnd_toStartOf="@id/tvMaterialUnit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMaterialName"
+        tools:text="Код: 1.1.01-2022-001" />
+
+    <!-- Цена за единицу -->
+    <TextView
+        android:id="@+id/tvMaterialPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvMaterialName"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="1 250 ₽" />
+
+    <!-- Единица измерения -->
+    <TextView
+        android:id="@+id/tvMaterialUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvMaterialCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="кг" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

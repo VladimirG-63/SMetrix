@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Network Security Config для RELEASE-сборки SMetrix.
+
+    HTTP-трафик полностью запрещён — только HTTPS на production-домен.
+    Этот файл ПЕРЕКРЫВАЕТ основной network_security_config.xml для release.
+-->
+<network-security-config>
+
+    <!-- RELEASE: только HTTPS, только системные сертификаты -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+</network-security-config>

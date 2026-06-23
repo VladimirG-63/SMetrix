@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Экран «Рабочие» — список всей бригады пользователя.
+    rvWorkers       — RecyclerView со списком WorkerEntity
+    tvEmptyWorkers  — заглушка «список пуст»
+    fabAddWorker    — FAB для создания нового рабочего
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Список рабочих -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWorkers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp" />
+
+    <!-- Заглушка «список пуст» -->
+    <TextView
+        android:id="@+id/tvEmptyWorkers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/empty_workers"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:alpha="0.5"
+        android:padding="@dimen/list_item_padding"
+        android:visibility="gone" />
+
+    <!-- FAB «Добавить рабочего» -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/list_item_padding"
+        android:contentDescription="@string/label_add_worker"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Network Security Config для SMetrix.
+
+    Разрешает cleartext (HTTP) трафик к ЛЮБОМУ адресу.
+    Это нужно для тестирования на реальном телефоне через локальную сеть:
+    - Домашний Wi-Fi (192.168.x.x)
+    - Мобильный хотспот iPhone (172.20.x.x)
+    - Мобильный хотспот Android (10.x.x.x)
+    - Эмулятор (10.0.2.2)
+
+    В release-сборках HTTP запрещён — только HTTPS на production-домен.
+    Release использует отдельный overlay-файл из src/release/res/xml/.
+-->
+<network-security-config>
+
+    <!-- DEBUG: разрешаем HTTP ко всем адресам для тестирования с локальным сервером -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+
+</network-security-config>

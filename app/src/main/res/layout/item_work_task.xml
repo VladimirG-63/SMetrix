@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Элемент списка рабочих задач (WorkTask).
+    tvTaskName    — название вида работ
+    tvWorkerName  — имя назначенного рабочего
+    tvTaskPayment — итоговая сумма оплаты
+    tvRateType    — тип оплаты (Сдельно / Фиксировано)
+    ibEditTask    — кнопка «Редактировать» (карандаш)
+    ibDeleteTask  — кнопка «Удалить» (корзина)
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/list_item_padding"
+    android:paddingEnd="4dp"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Кнопка удалить (корзина) — справа -->
+    <ImageButton
+        android:id="@+id/ibDeleteTask"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/cd_delete_task"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Кнопка редактировать (карандаш) — слева от корзины -->
+    <ImageButton
+        android:id="@+id/ibEditTask"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_edit"
+        android:contentDescription="@string/cd_edit_task"
+        app:layout_constraintEnd_toStartOf="@id/ibDeleteTask"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Название вида работ -->
+    <TextView
+        android:id="@+id/tvTaskName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@id/tvTaskPayment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Покраска стен в 2 слоя" />
+
+    <!-- Итоговая сумма оплаты -->
+    <TextView
+        android:id="@+id/tvTaskPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvTaskName"
+        app:layout_constraintEnd_toStartOf="@id/ibEditTask"
+        app:layout_constraintStart_toEndOf="@id/tvTaskName"
+        tools:text="6 300 ₽" />
+
+    <!-- Имя рабочего -->
+    <TextView
+        android:id="@+id/tvWorkerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:layout_constraintEnd_toStartOf="@id/tvRateType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskName"
+        tools:text="Иванов И.И." />
+
+    <!-- Тип оплаты (Сдельно / Фиксировано) -->
+    <TextView
+        android:id="@+id/tvRateType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvWorkerName"
+        app:layout_constraintEnd_toStartOf="@id/ibEditTask"
+        tools:text="Сдельно" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

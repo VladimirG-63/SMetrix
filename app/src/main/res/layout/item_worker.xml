@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Элемент списка рабочих (WorkerListFragment).
+    tvWorkerName      — полное имя рабочего
+    tvWorkerPhone     — телефон
+    tvWorkerSpecialty — специальность
+    ibEditWorker      — кнопка «Редактировать» (карандаш)
+    ibDeleteWorker    — кнопка «Удалить» (корзина)
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/list_item_padding"
+    android:paddingEnd="4dp"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Кнопка удалить (корзина) — справа -->
+    <ImageButton
+        android:id="@+id/ibDeleteWorker"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/cd_delete_worker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Кнопка редактировать (карандаш) — слева от корзины -->
+    <ImageButton
+        android:id="@+id/ibEditWorker"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_edit"
+        android:contentDescription="@string/cd_edit_worker"
+        app:layout_constraintEnd_toStartOf="@id/ibDeleteWorker"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Имя рабочего -->
+    <TextView
+        android:id="@+id/tvWorkerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@id/ibEditWorker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Иванов Иван Иванович" />
+
+    <!-- Специальность -->
+    <TextView
+        android:id="@+id/tvWorkerSpecialty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorPrimary"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@id/ibEditWorker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWorkerName"
+        tools:text="Маляр-штукатур" />
+
+    <!-- Телефон -->
+    <TextView
+        android:id="@+id/tvWorkerPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@id/ibEditWorker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWorkerSpecialty"
+        tools:text="+79161234567" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

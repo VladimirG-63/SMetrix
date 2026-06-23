@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    view_sync_status.xml
+    Компактный FrameLayout, встраиваемый в Toolbar.
+    Содержит:
+      - ivSyncIcon   — векторная иконка текущего статуса синхронизации
+      - tvConflictBadge — числовой бейдж поверх иконки (видим только при CONFLICT)
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="40dp"
+    android:layout_height="40dp">
+
+    <!--
+        Иконка статуса синхронизации.
+        Меняется программно через setImageResource() в SyncStatusView.
+        Размер 28dp позволяет видеть бейдж поверх в правом верхнем углу.
+    -->
+    <ImageView
+        android:id="@+id/ivSyncIcon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/cd_sync_status_icon"
+        android:src="@drawable/ic_cloud_grey"
+        tools:ignore="ContentDescription" />
+
+    <!--
+        Числовой бейдж: количество конфликтов.
+        По умолчанию скрыт (GONE).
+        Показывается только при globalStatus == "CONFLICT".
+        Позиционируется в правом верхнем углу поверх иконки.
+    -->
+    <TextView
+        android:id="@+id/tvConflictBadge"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_gravity="top|end"
+        android:background="@drawable/shape_circle"
+        android:backgroundTint="#D32F2F"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="2" />
+
+</FrameLayout>

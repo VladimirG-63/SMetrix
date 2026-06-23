@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Диалог добавления / редактирования рабочей задачи.
+
+    Кастомный выбор рабочего (вместо сломанного ExposedDropdownMenu):
+    ─────────────────────────────────────────────────────────────────
+    Состояние А (Рабочий не выбран):
+      • layoutWorkerStateA — видим
+          - btnCreateNewWorker  («+ Создать нового рабочего»)
+          - btnPickWorker       (иконка стрелки-вниз, открывает ListPopupWindow)
+
+    Состояние Б (Рабочий выбран):
+      • layoutWorkerStateB — видим
+          - tvSelectedWorkerName  (имя выбранного рабочего)
+          - btnClearWorker        (крестик, сбрасывает выбор → переход к А)
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/list_item_padding">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--  ВЫБОР РАБОЧЕГО — состояние А (рабочий не выбран)             -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/layoutWorkerStateA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:visibility="visible">
+
+        <!-- Кнопка «+ Создать нового рабочего» -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCreateNewWorker"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/label_create_new_worker"
+            android:textSize="13sp" />
+
+        <!-- Кнопка-иконка (стрелка вниз) — открывает список существующих рабочих -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPickWorker"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:minWidth="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:icon="@android:drawable/arrow_down_float"
+            app:iconPadding="0dp"
+            android:contentDescription="@string/cd_open_worker_picker" />
+
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--  ВЫБОР РАБОЧЕГО — состояние Б (рабочий выбран)                -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/layoutWorkerStateB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:visibility="gone">
+
+        <!-- Имя выбранного рабочего -->
+        <TextView
+            android:id="@+id/tvSelectedWorkerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="4dp"
+            android:text="@string/label_worker_not_selected" />
+
+        <!-- Кнопка-крестик: сброс выбранного рабочего -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClearWorker"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:minWidth="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:icon="@android:drawable/ic_menu_close_clear_cancel"
+            app:iconPadding="0dp"
+            android:contentDescription="@string/cd_edit_worker" />
+
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--  Название вида работ                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_task_name"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences"
+            android:maxLines="2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--  Тип оплаты                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <RadioGroup
+        android:id="@+id/rgRateType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium">
+
+        <RadioButton
+            android:id="@+id/rbPiecework"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/label_piecework"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbFixed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/label_fixed" />
+
+    </RadioGroup>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--  Ставка / сумма                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRateValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_rate_value"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRateValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

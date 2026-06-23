@@ -1,0 +1,226 @@
+<resources>
+    <string name="app_name">SMetrix</string>
+
+    <!-- Метки сводных итогов -->
+    <string name="label_materials">МАТЕРИАЛЫ</string>
+    <string name="label_salaries">ЗАРПЛАТЫ</string>
+    <string name="label_total">ИТОГО</string>
+
+    <!-- Диалог разрешения конфликтов -->
+    <string name="btn_keep_local">Оставить мою версию</string>
+    <string name="btn_accept_server">Принять серверную</string>
+    <string name="btn_cancel">Отмена</string>
+
+    <!-- Диалог предупреждения о пересчёте -->
+    <string name="warning_recalc_title">Внимание!</string>
+    <string name="warning_recalc_message">Изменение размеров приведёт к автоматическому пересчёту материалов и заработной платы. Продолжить?</string>
+
+    <!-- Accessibility -->
+    <string name="cd_sync_status_icon">Статус синхронизации</string>
+
+    <!-- Экран списка проектов -->
+    <string name="hint_project_name">Название проекта</string>
+    <string name="hint_project_city">Город</string>
+    <string name="hint_region_code">Код региона (например, 77)</string>
+    <string name="hint_tax_multiplier">Налоговый коэффициент (например, 1.20)</string>
+    <string name="hint_logistics_markup">Логистика, % (например, 5)</string>
+    <string name="error_invalid_number">Введите корректное число</string>
+    <string name="title_projects">Мои проекты</string>
+    <string name="label_add_project">Добавить проект</string>
+    <string name="label_create">Создать</string>
+    <string name="cd_project_sync_dot">Статус синхронизации проекта</string>
+    <string name="label_updated_at">Обновлено: %1$s</string>
+    <string name="dialog_delete_project_title">Удалить проект?</string>
+    <string name="dialog_delete_project_message">Это действие нельзя отменить. Удалить проект \"%1$s\"?</string>
+    <string name="label_delete">Удалить</string>
+
+    <!-- Экран детализации комнаты -->
+    <string name="label_length">Длина (м)</string>
+    <string name="label_width">Ширина (м)</string>
+    <string name="label_height">Высота (м)</string>
+    <string name="label_corners">Углы (шт)</string>
+    <string name="label_columns">Колонны (шт)</string>
+    <string name="label_ventilation">Вентиляция (м²)</string>
+    <string name="hint_integer_zero">0</string>
+    <string name="cd_room_corners">Количество углов/выступов</string>
+    <string name="cd_room_columns">Количество колонн</string>
+    <string name="cd_room_ventilation">Площадь вентиляции</string>
+    <string name="label_area">Площадь: %1$s м²</string>
+    <string name="hint_dimension">0.00</string>
+    <string name="btn_add_opening">Добавить элемент</string>
+    <string name="cd_room_length">Длина комнаты</string>
+    <string name="cd_room_width">Ширина комнаты</string>
+    <string name="cd_room_height">Высота потолка</string>
+
+    <!-- Ручной ввод площади -->
+    <string name="hint_manual_area">Площадь (м²)</string>
+    <string name="btn_manual_area">✂️ Ввести площадь вручную</string>
+    <string name="btn_auto_area">↺ Автоматический расчёт</string>
+    <string name="label_apply">Применить</string>
+
+    <!-- Позиции сметы (заголовки колонок) -->
+    <string name="col_name">Наименование</string>
+    <string name="col_unit">Ед.</string>
+    <string name="col_quantity">Кол-во</string>
+    <string name="col_price">Цена</string>
+    <string name="col_total">Сумма</string>
+    <string name="cd_item_status">Статус материала</string>
+
+    <!-- Список комнат -->
+    <string name="label_add_room">Добавить комнату</string>
+    <string name="hint_room_name">Название комнаты (например, Спальня)</string>
+    <string name="empty_rooms">Список пуст, добавьте комнату…</string>
+    <string name="title_rooms">Комнаты проекта</string>
+    <string name="dialog_delete_room_title">Удалить комнату?</string>
+    <string name="dialog_delete_room_message">Удалить комнату \"%1$s\"? Все позиции сметы и задачи будут удалены.</string>
+
+    <!-- Добавление материала -->
+    <string name="label_add_material">Добавить материал</string>
+
+    <!-- Поиск материалов (BottomSheet) -->
+    <string name="title_material_search">Поиск материалов</string>
+    <string name="hint_search_material">Начните вводить название…</string>
+    <string name="empty_search_hint">Введите название материала для поиска в ФГИС ЦС</string>
+    <string name="empty_search_results">Ничего не найдено. Уточните запрос.</string>
+    <string name="error_region_not_loaded">Регион проекта ещё загружается. Повторите через секунду.</string>
+
+    <!-- Рабочие и задачи -->
+    <string name="title_add_work_task">Добавить задачу рабочего</string>
+    <string name="label_select_worker">Выберите рабочего</string>
+    <string name="hint_task_name">Вид работ (например, Покраска стен)</string>
+    <string name="hint_rate_value">Ставка (₽/м² или фиксировано)</string>
+    <string name="label_piecework">Сдельно</string>
+    <string name="label_fixed">Фиксировано</string>
+    <string name="label_add_worker">Добавить рабочего</string>
+    <string name="label_add_task">Добавить задачу</string>
+    <string name="hint_worker_name">ФИО рабочего</string>
+    <string name="hint_worker_phone">Телефон</string>
+    <string name="hint_worker_specialty">Специальность</string>
+    <string name="empty_work_tasks">Список пуст, добавьте задачу рабочего…</string>
+
+    <!-- Пустые состояния -->
+    <string name="empty_projects">Список пуст, добавьте первый проект…</string>
+    <string name="empty_estimate">Смета пуста. Нажмите «+» для добавления материала.</string>
+
+    <!-- Конфликты разрешения -->
+    <string name="title_conflict_resolution">Конфликт данных</string>
+    <string name="label_my_version">Моя версия</string>
+    <string name="label_server_version">Версия сервера</string>
+
+    <!-- Форматирование валюты -->
+    <string name="currency_symbol">₽</string>
+
+    <!-- Sticky Bottom Bar -->
+    <string name="materials_total_fmt">МАТЕРИАЛЫ\n%1$s ₽</string>
+    <string name="salaries_total_fmt">ЗАРПЛАТЫ\n%1$s ₽</string>
+    <string name="room_total_fmt">ИТОГО\n%1$s ₽</string>
+
+    <!-- Сообщения об ошибках валидации -->
+    <string name="error_field_required">Поле обязательно для заполнения</string>
+    <string name="label_create_worker">Создать нового рабочего</string>
+    <string name="title_create_worker">Новый рабочий</string>
+    <string name="toast_add_opening_stub">Добавление проёма в разработке</string>
+
+    <!-- Экраны авторизации -->
+    <string name="auth_login_title">Добро пожаловать!</string>
+    <string name="auth_login_subtitle">Войдите в свой аккаунт SMetrix</string>
+    <string name="auth_register_title">Создать аккаунт</string>
+    <string name="auth_register_subtitle">Зарегистрируйтесь, чтобы начать работу</string>
+    <string name="auth_forgot_title">Забыли пароль?</string>
+    <string name="auth_forgot_description">Введите email, и мы отправим ссылку для сброса пароля</string>
+    <string name="auth_hint_email">Email</string>
+    <string name="auth_hint_password">Пароль</string>
+    <string name="auth_hint_name">Ваше имя</string>
+    <string name="auth_hint_confirm_password">Подтвердите пароль</string>
+    <string name="auth_btn_login">Войти</string>
+    <string name="auth_btn_guest">Продолжить без регистрации</string>
+    <string name="auth_guest_note">Гостевые данные хранятся только на этом устройстве и не синхронизируются.</string>
+    <string name="auth_btn_register">Зарегистрироваться</string>
+    <string name="auth_btn_send_link">Отправить ссылку</string>
+    <string name="auth_forgot_password">Забыли пароль?</string>
+    <string name="auth_no_account">Нет аккаунта?</string>
+    <string name="auth_already_have_account">Уже есть аккаунт? Войти</string>
+    <string name="auth_back_to_login">Вернуться к входу</string>
+
+    <!-- Рабочие — экран списка -->
+    <string name="title_workers">Рабочие</string>
+    <string name="empty_workers">Список рабочих пуст. Создайте первого рабочего.</string>
+    <string name="cd_edit_worker">Редактировать рабочего</string>
+    <string name="cd_delete_worker">Удалить рабочего</string>
+    <string name="dialog_delete_worker_title">Удалить рабочего?</string>
+    <string name="dialog_delete_worker_message">Удалить рабочего \"%1$s\"? Все его задачи останутся без исполнителя.</string>
+    <string name="title_edit_worker">Редактировать рабочего</string>
+
+    <!-- Задачи — редактирование и удаление -->
+    <string name="cd_edit_task">Редактировать задачу</string>
+    <string name="cd_delete_task">Удалить задачу</string>
+    <string name="dialog_delete_task_title">Удалить задачу?</string>
+    <string name="dialog_delete_task_message">Удалить задачу \"%1$s\"? Это действие нельзя отменить.</string>
+    <string name="title_edit_task">Редактировать задачу</string>
+    <string name="label_save_task">Сохранить</string>
+
+    <!-- Кастомный выбор рабочего -->
+    <string name="label_create_new_worker">+ Создать нового рабочего</string>
+    <string name="label_worker_not_selected">Рабочий не выбран</string>
+    <string name="cd_open_worker_picker">Выбрать рабочего из списка</string>
+
+    <!-- Редактирование проекта и комнаты -->
+    <string name="cd_edit_project">Редактировать проект</string>
+    <string name="cd_edit_room">Редактировать комнату</string>
+    <string name="label_save">Сохранить</string>
+    <string name="title_edit_project">Редактировать проект</string>
+    <string name="title_edit_room">Переименовать комнату</string>
+
+    <!-- Диалог добавления элемента помещения -->
+    <string name="title_add_opening">Добавить элемент</string>
+    <string name="label_add">Добавить</string>
+    <string name="label_door">Дверь</string>
+    <string name="label_window">Окно</string>
+    <string name="label_vent">Вентиляция</string>
+    <string name="label_column">Колонна/Короб</string>
+    <string name="hint_opening_width">Ширина (м)</string>
+    <string name="hint_opening_height">Высота (м)</string>
+    <string name="hint_opening_depth">Глубина/Толщина (м)</string>
+    <string name="label_placement_freestanding">Отдельно стоящая (4 стороны)</string>
+    <string name="label_placement_wall">Пристенная (3 стороны)</string>
+
+    <!-- Текст чипов элементов: "Дверь 0.9×2.0", "Окно 1.5×1.5", "Вент. 0.2×0.2", "Колонна 0.3×0.3×2.7" -->
+    <string name="chip_door_fmt">Дверь %1$s×%2$s</string>
+    <string name="chip_window_fmt">Окно %1$s×%2$s</string>
+    <string name="chip_vent_fmt">Вент. %1$s×%2$s</string>
+    <string name="chip_column_free_fmt">Колонна %1$s×%2$s×%3$s (4 ст.)</string>
+    <string name="chip_column_wall_fmt">Короб %1$s×%2$s×%3$s (3 ст.)</string>
+
+    <!-- Удаление позиции сметы (долгое нажатие на строку) -->
+    <string name="dialog_delete_estimate_title">Удалить позицию?</string>
+    <string name="dialog_delete_estimate_message">Вы уверены, что хотите удалить эту позицию из сметы? Это действие нельзя отменить.</string>
+
+    <!-- Добавление задачи (кнопка в диалоге) -->
+    <string name="label_add_work_task">Добавить задачу</string>
+
+    <!-- Экран профиля -->
+    <string name="profile_title">Мой профиль</string>
+    <string name="profile_avatar_cd">Аватар пользователя</string>
+    <string name="profile_hint_name">Ваше имя</string>
+    <string name="profile_hint_email">Email</string>
+    <string name="profile_btn_save">Сохранить изменения</string>
+    <string name="profile_btn_logout">Выйти из аккаунта</string>
+    <string name="profile_section_personal">ЛИЧНЫЕ ДАННЫЕ</string>
+    <string name="profile_section_account">УПРАВЛЕНИЕ АККАУНТОМ</string>
+    <string name="profile_action_settings">Настройки профиля</string>
+    <string name="dialog_logout_title">Выход из аккаунта</string>
+    <string name="dialog_logout_message">Вы уверены, что хотите выйти из аккаунта?</string>
+    <string name="dialog_logout_confirm">Выйти</string>
+    <string name="cd_edit_name">Редактировать имя</string>
+    <string name="cd_edit_email">Редактировать email</string>
+    <string name="material_manual_add">Добавить материал вручную</string>
+    <string name="material_manual_title">Новый материал</string>
+    <string name="material_name_hint">Название</string>
+    <string name="material_unit_hint">Единица измерения</string>
+    <string name="material_price_hint">Цена за единицу</string>
+    <string name="material_invalid_price">Введите неотрицательную цену</string>
+    <string name="material_batch_title">Выберите позиции</string>
+    <string name="material_batch_status_title">Новый статус</string>
+    <string name="material_batch_action">Изменить статус нескольких позиций</string>
+    <string name="label_continue">Продолжить</string>
+</resources>

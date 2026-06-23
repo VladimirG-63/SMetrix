@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    layout/activity_auth.xml
+    Контейнер для фрагментов аутентификации (Login / Register / ForgotPassword).
+    Toolbar добавлен для поддержки кнопки «Назад» (Up Button) в экранах
+    Регистрации и Восстановления пароля.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface">
+
+    <!-- Toolbar — показывается только когда есть back stack (Register / ForgotPassword) -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/auth_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorSurface"
+        android:elevation="4dp"
+        app:titleTextAppearance="?attr/textAppearanceTitleMedium" />
+
+    <!-- Контейнер фрагментов -->
+    <FrameLayout
+        android:id="@+id/auth_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
