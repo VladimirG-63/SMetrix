@@ -21,68 +21,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public class MaterialRepository {
 
     private static final String TAG = "MaterialRepository";
 
 
-
-
-
-
-
     private final MaterialsCacheDao materialsCacheDao;
 
 
-
-
-
-
     private final ApiService apiService;
-
-
-
-
-
-
-
-
-
 
 
     public MaterialRepository(MaterialsCacheDao materialsCacheDao) {
@@ -91,38 +38,10 @@ public class MaterialRepository {
     }
 
 
-
-
-
-
-
     public MaterialRepository(MaterialsCacheDao materialsCacheDao, ApiService apiService) {
         this.materialsCacheDao = materialsCacheDao;
         this.apiService = apiService;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public LiveData<List<MaterialsCacheEntity>> searchLocal(String query, String regionCode) {
@@ -131,44 +50,12 @@ public class MaterialRepository {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void cacheFromServer(final List<MaterialsCacheEntity> serverItems) {
 
         if (serverItems == null || serverItems.isEmpty()) {
 
             return;
         }
-
-
 
 
         AppExecutors.diskIO().execute(new Runnable() {
@@ -184,8 +71,6 @@ public class MaterialRepository {
 
                         continue;
                     }
-
-
 
 
                     try {
@@ -212,8 +97,12 @@ public class MaterialRepository {
                 materialsCacheDao.markUsed(fgisCode, regionCode, System.currentTimeMillis()));
         if (apiService != null && !fgisCode.startsWith("MANUAL-")) {
             apiService.recordMaterialUse(fgisCode, regionCode).enqueue(new Callback<Void>() {
-                @Override public void onResponse(Call<Void> call, Response<Void> response) { }
-                @Override public void onFailure(Call<Void> call, Throwable error) {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable error) {
                     Log.d(TAG, "Не удалось обновить региональную популярность материала", error);
                 }
             });
@@ -232,30 +121,6 @@ public class MaterialRepository {
         entity.priorityScore = 1;
         cacheFromServer(java.util.Collections.singletonList(entity));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public void searchRemote(String query, String regionCode,
@@ -300,19 +165,8 @@ public class MaterialRepository {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     private List<MaterialsCacheEntity> mapDtosToEntities(List<MaterialDto> dtos,
-                                                          String requestedRegionCode) {
+                                                         String requestedRegionCode) {
         List<MaterialsCacheEntity> entities = new ArrayList<>(dtos.size());
         long now = System.currentTimeMillis();
 
@@ -321,17 +175,17 @@ public class MaterialRepository {
                 continue;
             }
             MaterialsCacheEntity entity = new MaterialsCacheEntity();
-            entity.fgisCode    = dto.fgisCode;
-            entity.name        = dto.name;
+            entity.fgisCode = dto.fgisCode;
+            entity.name = dto.name;
             entity.unitMeasure = dto.unitMeasure;
-            entity.regionCode  = dto.regionCode != null && !dto.regionCode.trim().isEmpty()
+            entity.regionCode = dto.regionCode != null && !dto.regionCode.trim().isEmpty()
                     ? dto.regionCode.trim() : requestedRegionCode;
-            entity.basePrice   = (dto.basePrice != null)
+            entity.basePrice = (dto.basePrice != null)
                     ? new BigDecimal(dto.basePrice) : BigDecimal.ZERO;
             entity.consumptionRate = (dto.consumptionRate != null)
                     ? new BigDecimal(dto.consumptionRate) : null;
-            entity.source      = "SERVER";
-            entity.cachedAt    = now;
+            entity.source = "SERVER";
+            entity.cachedAt = now;
             entity.priorityScore = dto.priorityScore;
             entities.add(entity);
         }

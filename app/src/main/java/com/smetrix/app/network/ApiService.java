@@ -26,65 +26,19 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
-
-
-
-
-
-
-
-
-
 public interface ApiService {
-
-
-
-
-
-
-
-
-
 
 
     @POST("projects")
     Call<ProjectDto> createProject(@Body ProjectDto dto);
 
 
-
-
-
-
-
-
-
-
-
-
     @DELETE("projects/{id}")
     Call<Void> deleteProject(@Path("id") String id, @Body Map<String, Long> body);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @POST("estimate-items/sync")
     Call<SyncBatchResponse> syncEstimateItems(@Body SyncBatchRequest request);
-
-
-
-
-
 
 
     @POST("project-rooms/sync")
@@ -103,21 +57,6 @@ public interface ApiService {
     Call<SyncPullResponse> pullChanges(@Query("since") long since);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @GET("materials")
     Call<MaterialSearchResponse> searchMaterials(
             @Query("q") String query,
@@ -130,75 +69,28 @@ public interface ApiService {
     Call<Void> recordMaterialUse(@Path("code") String code, @Query("region") String regionCode);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @POST("auth/refresh")
     Call<TokenResponse> refreshToken(@Body Map<String, String> body);
-
-
-
-
-
 
 
     @POST("auth/login")
     Call<TokenResponse> login(@Body LoginRequest body);
 
 
-
-
-
-
-
     @POST("auth/register")
     Call<RegisterResponse> register(@Body RegisterRequest body);
-
-
-
-
-
 
 
     @POST("auth/forgot-password")
     Call<Void> forgotPassword(@Body ForgotPasswordRequest body);
 
 
-
-
     @POST("auth/reset-password")
     Call<Void> resetPassword(@Body Map<String, String> request);
 
 
-
-
-
-
-
-
-
-
     @GET("user/profile")
     Call<Map<String, String>> getProfile();
-
-
-
-
-
 
 
     @PUT("user/profile")

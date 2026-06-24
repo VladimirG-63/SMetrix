@@ -1,0 +1,24 @@
+PROJECT RULES (Smetrix)
+1. Core Principles
+•	Stack Consistency: Strictly use Java (Android SDK), Room Persistence, and XML Layouts. NO Kotlin or Jetpack Compose.
+•	Offline-First: All business logic must prioritize local data (Room) as the source of truth.
+•	Clean Architecture: Maintain a strict separation between UI (Activities/Fragments), Business Logic (ViewModels/Presenters), and Data (Repositories/DAOs).
+2. Coding Style & Quality
+•	Naming: Use clear, descriptive names for classes and variables (e.g., EstimateCalculator instead of EstCalc).
+•	Encapsulation: Keep fields private; use getters/setters or constructor injection.
+•	No Magic Strings: Use strings.xml for all UI text and constants for internal keys.
+•	Error Handling: Always catch specific exceptions. Never leave empty catch blocks. Provide user-friendly feedback for DB/Network errors.
+3. Security & Privacy (FZ-152 Compliance)
+•	PII Protection: Personal Identifiable Information (Full Names, Phones) must be handled with care.
+•	No Hardcoding: Never hardcode API keys, tokens, or local file paths.
+•	Data Sanitization: Sanitize all user inputs before saving to Room to prevent SQL injection.
+•	Encryption: Use EncryptedSharedPreferences for sensitive settings if required.
+4. Data & Performance (Room/SQLite)
+•	Main Thread: Never perform database or parsing operations on the Main Thread.
+•	Migrations: All schema changes must include a proper Room Migration script.
+•	Optimization: Use @Transaction for multi-step database updates. Use Indices on Foreign Keys.
+•	Character Encoding: Ensure all DB operations and file exports use UTF-8.
+5. XML Layouts
+•	Consistency: Use ConstraintLayout for complex views to flatten the hierarchy.
+•	Resources: Extract all dimensions to dimens.xml and styles to themes.xml.
+•	Accessibility: Include contentDescription for ImageViews and ensure proper contrast.
